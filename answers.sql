@@ -22,11 +22,12 @@ GROUP BY pledges.id
 HAVING SUM(pledges.amount) > projects.funding_goal;
 
 -- 4. Select user names and amounts of all pledges. Order them by the amount.
-SELECT users.name, SUM(pledges.amount)
+SELECT users.name, SUM(pledges.amount) AS total
 FROM users
 JOIN pledges
 ON users.id = pledges.user_id
-GROUP BY users.id;
+GROUP BY users.id
+ORDER BY total DESC;
 
 -- 5. Select the category names, and pledge amounts of all pledges in the music category.
 SELECT 'music', pledges.amount 
